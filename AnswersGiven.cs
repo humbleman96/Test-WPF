@@ -20,6 +20,13 @@ namespace Test
         private static Dictionary<List<string>, List<bool>> correctAnswersQ2;
         private static Dictionary<List<string>, List<bool>> correctAnswersQ3;
 
+
+        private static Dictionary<string, bool> getCorrectAnswerFromQuestion = new Dictionary<string, bool>();
+        private static Dictionary<Question, Dictionary<string, bool>> goGocorrectAnswer = new Dictionary<Question, Dictionary<string, bool>>();
+        private static List<string> allCorrectAnswers = new List<string>();
+       
+
+
         private static List<string> answersQ1 = new List<string>();
         private static List<string> answersQ2 = new List<string>();
         private static List<string> answersQ3 = new List<string>();
@@ -39,7 +46,7 @@ namespace Test
             correctAnswersQ2 = new Dictionary<List<string>, List<bool>>();
             correctAnswersQ3 = new Dictionary<List<string>, List<bool>>();
 
-
+            goGocorrectAnswer = new Dictionary<Question, Dictionary<string, bool>>();
 
             answersQ1.Add("1");
             answersQ1.Add("2");
@@ -76,50 +83,71 @@ namespace Test
             correctAnswersQ2.Add(answersQ2, boolsCorrectAnswerQ2);
             correctAnswersQ3.Add(answersQ3, boolsCorrectAnswerQ3);
 
+            allCorrectAnswers.Add("4");
+            allCorrectAnswers.Add("625");
+            allCorrectAnswers.Add("3");
 
-            correctAnswers.Add(QuestionData.testQuestions[0], correctAnswersQ1);
-            correctAnswers.Add(QuestionData.testQuestions[1], correctAnswersQ2);
-            correctAnswers.Add(QuestionData.testQuestions[2], correctAnswersQ3);
+         
 
 
-           /*  foreach(KeyValuePair<Question , Dictionary<List<string> , List<bool>>> question in correctAnswers)
-             {
-                 Console.WriteLine(question.Key.question);
-                break;
-             }
+            /* getCorrectAnswerFromQuestion.Add("4", true);
+             getCorrectAnswerFromQuestion.Add("625", true);
+             getCorrectAnswerFromQuestion.Add("3", true);
+             */
+              correctAnswers.Add(QuestionData.testQuestions[0], correctAnswersQ1);
+              correctAnswers.Add(QuestionData.testQuestions[1], correctAnswersQ2);
+              correctAnswers.Add(QuestionData.testQuestions[2], correctAnswersQ3);
+
+
+
+
+
+            //getCorrectAnswerFromQuestion.Add(allCorrectAnswers, allCorrectIndexesBool);
+
             
 
-            foreach(string getAnswersQ1 in answersQ1)
+          
+
+            foreach(string correctAnswer in allCorrectAnswers)
             {
-                Console.WriteLine(getAnswersQ1);
-            }*/
+                getCorrectAnswerFromQuestion.Add(correctAnswer, true);
+            }
+            
+            /*
+            foreach(KeyValuePair<string, bool> correct in getCorrectAnswerFromQuestion)
+            {
+                Console.WriteLine(correct.Key + " " + correct.Value);
+            }
+            */
 
-            /*    string choice;
-                Console.WriteLine("Enter the your choice: ");
-                choice = Console.ReadLine();
+         //   Console.WriteLine(getCorrectAnswerFromQuestion.Count);
+
+            for (int i= 0; i<getCorrectAnswerFromQuestion.Count; i++)
+            {
+              //  foreach (KeyValuePair<string, bool> answer in getCorrectAnswerFromQuestion) 
+                //    {
+                
+                   goGocorrectAnswer.Add(QuestionData.testQuestions[i], new Dictionary<string, bool>());
+                    goGocorrectAnswer[QuestionData.testQuestions[i]].Add(getCorrectAnswerFromQuestion.ElementAt(i).Key,getCorrectAnswerFromQuestion.ElementAt(i).Value);
+              //  }
+               
+                    }
+          
+               /*
+                for (int i=0; i<getCorrectAnswerFromQuestion.Count; i++)
+                {
+                    Console.WriteLine(QuestionData.testQuestions[i].question);
+                    Console.WriteLine(getCorrectAnswerFromQuestion.ElementAt(i).Key);
+                    Console.WriteLine(getCorrectAnswerFromQuestion.ElementAt(i).Value);
+
+                }
                 */
+            
+            
 
-            //   for (int i = 0; i < boolsCorrectAnswerQ1.Count; i++)
-            //    {
-            /*    if (choice.Equals(answersQ1))
-                 {
-                     Console.WriteLine("Correct answer !");
-                 }
+            
 
-                 else
-                 {
-                     Console.WriteLine("Wrong answer !");
-                 }*/
-            //Console.WriteLine("zv");
-            //     }
-
-            /*  foreach(KeyValuePair <List<string> , List<bool>> answer in correctAnswersQ1)
-              {
-                  foreach(string getAns in answer.Key)
-                  {
-                      Console.WriteLine(getAns);
-                  }
-              }*/
+           
 
 
             // answersGiven = new Dictionary<Question, List<Answer>>();
@@ -150,44 +178,69 @@ namespace Test
                answersGiven.Add(QuestionData.testQuestions[1], answersToQ2);
                answersGiven.Add(QuestionData.testQuestions[2], answersToQ3);*/
 
-            foreach (KeyValuePair<Question, Dictionary<List<string>, List<bool>>> question in correctAnswers)
+
+
+            
+               tryLabel:
+            try
             {
-                Console.WriteLine(question.Key.question);
-               foreach(KeyValuePair<List<string> , List<bool>> answers in question.Value)
+               
+                foreach (KeyValuePair<Question, Dictionary<List<string>, List<bool>>> question in correctAnswers)
                 {
-                    shuffleAnswers(answers.Key, answers.Value);
-                    foreach (string rightAnswer in answers.Key)
+                    Console.WriteLine(question.Key.question);
+
+                    foreach (KeyValuePair<List<string>, List<bool>> answers in question.Value)
                     {
-                        Console.WriteLine(rightAnswer);
+                        shuffleAnswers(answers.Key, answers.Value);
+                        foreach (string rightAnswer in answers.Key)
+                        {
+                            Console.WriteLine(rightAnswer);
+                        }
+
+                        foreach (bool rightIndex in answers.Value)
+                        {
+                            Console.WriteLine(rightIndex);
+                        }
+
+                        Console.WriteLine();
+
+                        string choice;
+                        Console.WriteLine("Enter your choice: ");
+                        choice = Console.ReadLine();
+
+
+
+                        if (goGocorrectAnswer[question.Key][choice])
+                        {
+                            Console.WriteLine("Correct answer!");
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("Wrong answer!");
+                        }
+
+                        Console.WriteLine();
+                        
                     }
 
-                    foreach (bool rightIndex in answers.Value)
-                    {
-                        Console.WriteLine(rightIndex);
-                    }
-                    
+
+
                 }
             }
-
-         /*   Console.WriteLine();
-            shuffleAnswers(answersQ1, boolsCorrectAnswerQ1);
-
-            foreach(string answer in answersQ2)
+            
+            
+            catch(Exception e)
             {
-                Console.WriteLine(answer);
-            }
+                Console.WriteLine("Wrong answer!");
+                goto tryLabel;
 
-            Console.WriteLine();
-
-            foreach (bool index in boolsCorrectAnswerQ2)
-            {
-                Console.WriteLine(index);
             }
-            */
+           
 
         }
 
-
+       
 
         public static void shuffleAnswers(List<string> rightAnswer , List<bool> rightIndex)
         {
