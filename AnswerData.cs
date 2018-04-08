@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    class AnswerData
+    public class AnswerData
     {
         private static List<Answer> answers = new List<Answer>();
 

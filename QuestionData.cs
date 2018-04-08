@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    class QuestionData
+   public class QuestionData
     {
         private static List<Question> questions = new List<Question>();
 
@@ -14,7 +14,7 @@ namespace Test
         {
             get
             {
-                testQuestionData();
+              
                 return questions;
             }
             set
@@ -26,12 +26,12 @@ namespace Test
         }
 
 
-        private static void testQuestionData()
+        public static void testQuestionData()
         {
           
 
-            questions.Add(new Question(1, "Колко страни има квадратът? "));
-            questions.Add(new Question(2, "Колко е 25^2"));
+            questions.Add(new Question(1, "Колко страни има квадратът ?"));
+            questions.Add(new Question(2, "Колко е 25^2 ?"));
             questions.Add(new Question(3, "2x+6 = 12   x=?"));
            // questions.Add(new Question(4, "дсфсдфсд"));
         }

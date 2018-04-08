@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    class Answer
+   public class Answer
     {
         public string answer;
 
@@ -15,6 +15,12 @@ namespace Test
             this.answer = answer;
         }
 
+        public Answer()
+        {
+            string choice;
+            Console.WriteLine("Enter your choice: ");
+            choice = Console.ReadLine();
+        }
 
         public void printInfo()
         {

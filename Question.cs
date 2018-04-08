@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Test
 {
-    class Question
+   public class Question
     {
 
         public int numOfQuestion;
@@ -17,6 +17,16 @@ namespace Test
         {
             this.numOfQuestion = numOfQuestion;
             this.question = question;
+        }
+
+        public Question(string question)
+        {
+            this.question = question;
+        }
+
+        public Question()
+        {
+
         }
 
 
