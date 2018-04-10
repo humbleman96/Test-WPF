@@ -33,6 +33,23 @@ namespace Test
             answers.Add(new Answer("2"));
             answers.Add(new Answer("3"));
             answers.Add(new Answer("4"));
+
+            answers.Add(new Answer("125"));
+            answers.Add(new Answer("625"));
+            answers.Add(new Answer("425"));
+            answers.Add(new Answer("225"));
+
+
+            answers.Add(new Answer("3"));
+            answers.Add(new Answer("6"));
+            answers.Add(new Answer("1"));
+            answers.Add(new Answer("2"));
+
+            answers.Add(new Answer("26см"));
+            answers.Add(new Answer("40см"));
+            answers.Add(new Answer("13см"));
+            answers.Add(new Answer("20см"));
+
         }
     }
 }

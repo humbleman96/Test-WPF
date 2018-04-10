@@ -14,21 +14,27 @@ namespace Test
         private static Dictionary<List<Answer>, List<bool>> correctAnswersQ1;
         private static Dictionary<List<Answer>, List<bool>> correctAnswersQ2;
         private static Dictionary<List<Answer>, List<bool>> correctAnswersQ3;
-
-
-        private static Dictionary<string, bool> getCorrectAnswerFromQuestion = new Dictionary<string, bool>();
-        private static Dictionary<Question, Dictionary<string, bool>> goGocorrectAnswer = new Dictionary<Question, Dictionary<string, bool>>();
-        private static List<string> allCorrectAnswers = new List<string>();
-       
-
-
-        private static List<Answer> answersQ1 = new List<Answer>();
-        private static List<Answer> answersQ2 = new List<Answer>();
-        private static List<Answer> answersQ3 = new List<Answer>();
+        private static Dictionary<List<Answer>, List<bool>> correctAnswersQ4;
 
         private static List<bool> boolsCorrectAnswerQ1 = new List<bool>();
         private static List<bool> boolsCorrectAnswerQ2 = new List<bool>();
         private static List<bool> boolsCorrectAnswerQ3 = new List<bool>();
+        private static List<bool> boolsCorrectAnswerQ4 = new List<bool>();
+
+        private static List<Answer> answersQ1 = new List<Answer>();
+        private static List<Answer> answersQ2 = new List<Answer>();
+        private static List<Answer> answersQ3 = new List<Answer>();
+        private static List<Answer> answersQ4 = new List<Answer>();
+
+        private static Dictionary<Question, Dictionary<string, bool>> goGocorrectAnswer = new Dictionary<Question, Dictionary<string, bool>>();
+        private static Dictionary<string, bool> getCorrectAnswerFromQuestion = new Dictionary<string, bool>();
+        private static List<string> allCorrectAnswers = new List<string>();
+       
+
+
+  
+
+        
 
 
         public static Dictionary<Question, Dictionary<List<Answer> , List<bool>>> CorrectAnswers
@@ -185,6 +191,7 @@ namespace Test
             correctAnswersQ1 = new Dictionary<List<Answer>, List<bool>>();
             correctAnswersQ2 = new Dictionary<List<Answer>, List<bool>>();
             correctAnswersQ3 = new Dictionary<List<Answer>, List<bool>>();
+            correctAnswersQ4 = new Dictionary<List<Answer>, List<bool>>();
 
             goGocorrectAnswer = new Dictionary<Question, Dictionary<string, bool>>();
 
@@ -203,6 +210,11 @@ namespace Test
             answersQ3.Add(new Answer("1"));
             answersQ3.Add(new Answer("2"));
 
+            answersQ4.Add(new Answer("26см"));
+            answersQ4.Add(new Answer("40см"));
+            answersQ4.Add(new Answer("13см"));
+            answersQ4.Add(new Answer("20см"));
+
             boolsCorrectAnswerQ1.Add(false);
             boolsCorrectAnswerQ1.Add(false);
             boolsCorrectAnswerQ1.Add(false);
@@ -218,40 +230,41 @@ namespace Test
             boolsCorrectAnswerQ3.Add(false);
             boolsCorrectAnswerQ3.Add(false);
 
+            boolsCorrectAnswerQ4.Add(false);
+            boolsCorrectAnswerQ4.Add(true);
+            boolsCorrectAnswerQ4.Add(false);
+            boolsCorrectAnswerQ4.Add(false);
+
+
 
             correctAnswersQ1.Add(answersQ1, boolsCorrectAnswerQ1);
             correctAnswersQ2.Add(answersQ2, boolsCorrectAnswerQ2);
             correctAnswersQ3.Add(answersQ3, boolsCorrectAnswerQ3);
-
-            allCorrectAnswers.Add("4");
-            allCorrectAnswers.Add("625");
-            allCorrectAnswers.Add("3");
-
-
-
-
+            correctAnswersQ4.Add(answersQ4, boolsCorrectAnswerQ4);
 
             correctAnswers.Add(QuestionData.testQuestions[0], correctAnswersQ1);
             correctAnswers.Add(QuestionData.testQuestions[1], correctAnswersQ2);
             correctAnswers.Add(QuestionData.testQuestions[2], correctAnswersQ3);
+            correctAnswers.Add(QuestionData.testQuestions[3], correctAnswersQ4);
 
 
 
 
+
+
+
+            allCorrectAnswers.Add("4");
+            allCorrectAnswers.Add("625");
+            allCorrectAnswers.Add("3");
+            allCorrectAnswers.Add("40см");
+            
 
             foreach (string correctAnswer in allCorrectAnswers)
             {
                 getCorrectAnswerFromQuestion.Add(correctAnswer, true);
             }
 
-            /* 
-             foreach(KeyValuePair<string, bool> correct in getCorrectAnswerFromQuestion)
-             {
-                 Console.WriteLine(correct.Key + " " + correct.Value);
-             }
-             */
-
-            // Console.WriteLine(getCorrectAnswerFromQuestion.Count);
+           
 
             for (int i = 0; i < getCorrectAnswerFromQuestion.Count; i++)
             {
