@@ -28,13 +28,11 @@ namespace TestSystem
      //   private static bool previousCallFucn = false;
      //   private static bool nextCallFunc = false;
         private static int radioButtonCounter = 0;
+        
 
         private static int time = 600;
-        private static DispatcherTimer timer = new DispatcherTimer();    
-      
+        private static DispatcherTimer timer = new DispatcherTimer();
         
-       
-       
 
         public MainWindow()
         {
@@ -402,6 +400,9 @@ namespace TestSystem
             {
                 MessageBox.Show("Вашата оценка е Отличен(6)");
             }
+
+            btnCheck_Checked(new object, new RoutedEventArgs);
+
         }
 
 
@@ -419,18 +420,19 @@ namespace TestSystem
                     }
                  //   MessageBox.Show("CongratZ bro, you got it right !");
                     correctAnswersCounter = QuestionData.correctAnswered.Count;
-               
+            
             }
 
             else
             {
+              
                 QuestionData.correctAnswered.Remove(QuestionData.testQuestions[counter]);
                 correctAnswersCounter = QuestionData.correctAnswered.Count;
-                
+              
               //  MessageBox.Show("Sorry bro, try again !");
             }
 
-
+            
          
         }
 
