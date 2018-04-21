@@ -14,7 +14,7 @@ namespace Test
         {
             get
             {
-                testAnswerData();
+              //  testAnswerData();
                 return answers;
             }
 
@@ -29,7 +29,7 @@ namespace Test
 
         private static void testAnswerData()
         {
-            answers.Add(new Answer("1"));
+          /*  answers.Add(new Answer("1"));
             answers.Add(new Answer("2"));
             answers.Add(new Answer("3"));
             answers.Add(new Answer("4"));
@@ -48,7 +48,7 @@ namespace Test
             answers.Add(new Answer("26см"));
             answers.Add(new Answer("40см"));
             answers.Add(new Answer("13см"));
-            answers.Add(new Answer("20см"));
+            answers.Add(new Answer("20см"));*/
 
         }
     }
