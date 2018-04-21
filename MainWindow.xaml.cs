@@ -38,31 +38,40 @@ namespace TestSystem
 
         public MainWindow()
         {
-            QuestionData.testQuestionData();
-            AnswersGiven.setAnswers();
-            InitializeComponent();
-
-
-           
-             foreach (KeyValuePair<Question, Dictionary<List<Answer>, List<bool>>> question in AnswersGiven.CorrectAnswers)
-             {
-                 foreach (KeyValuePair<List<Answer>, List<bool>> answers in question.Value)
-                 {
-                     AnswersGiven.shuffleAnswers(answers.Key, answers.Value);
-                 }
-
-             }
-
-
-            initializeItems();
+            try
+            {
+              
+                QuestionData.testQuestionData();
+                AnswersGiven.setAnswers();
+                InitializeComponent();
 
 
 
-            timer.Interval = new TimeSpan(0,0,1);
-            timer.Tick += Timer_Tick;
-           
-            timer.Start();
-          
+                foreach (KeyValuePair<Question, Dictionary<List<Answer>, List<bool>>> question in AnswersGiven.CorrectAnswers)
+                {
+                    foreach (KeyValuePair<List<Answer>, List<bool>> answers in question.Value)
+                    {
+                        AnswersGiven.shuffleAnswers(answers.Key, answers.Value);
+                    }
+
+                }
+
+
+                initializeItems();
+                btnPrevious.IsEnabled = false;
+
+
+
+                timer.Interval = new TimeSpan(0, 0, 1);
+                timer.Tick += Timer_Tick;
+
+                timer.Start();
+            }
+
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
     
         }
 
@@ -98,11 +107,18 @@ namespace TestSystem
 
         private void finalResults()
         {
-            Grid[] grid = new Grid[4];
+            Grid[] grid = new Grid[10];
             grid[0] = answers1;
             grid[1] = answers2;
             grid[2] = answers3;
             grid[3] = answers4;
+            grid[4] = answers5;
+            grid[5] = answers6;
+            grid[6] = answers7;
+            grid[7] = answers8;
+            grid[8] = answers9;
+            grid[9] = answers10;
+            
 
             for (int i = 0; i < grid.Length; i++)
             {
@@ -117,7 +133,28 @@ namespace TestSystem
 
             timer.Stop();
 
-            MessageBox.Show("Grats ! You've got" + " " + correctAnswersCounter + "/" + QuestionData.testQuestions.Count + " right");
+            MessageBox.Show("Поздравления! Вие имате" + " " + correctAnswersCounter + "/" + QuestionData.testQuestions.Count + " верни");
+            if(correctAnswersCounter < 6)
+            {
+                MessageBox.Show("Вашата оценка е Слаб(2)");
+            }
+
+            else if (correctAnswersCounter == 6)
+            {
+                MessageBox.Show("Вашата оценка е Среден(3)");
+            }
+            else if (correctAnswersCounter == 7)
+            {
+                MessageBox.Show("Вашата оценка е Добър(4)");
+            }
+            else if (correctAnswersCounter == 8)
+            {
+                MessageBox.Show("Вашата оценка е Много добър(5)");
+            }
+            else
+            {
+                MessageBox.Show("Вашата оценка е Отличен(6)");
+            }
 
         }
 
@@ -158,22 +195,27 @@ namespace TestSystem
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
         {
-
-            if (counter == QuestionData.testQuestions.Count - 1)
-            {
-                MessageBox.Show("Няма следващ въпрос");
-                counter--;
-            }
-
-            Grid[] grid = new Grid[4];
+            Grid[] grid = new Grid[10];
             grid[0] = answers1;
             grid[1] = answers2;
             grid[2] = answers3;
             grid[3] = answers4;
+            grid[4] = answers5;
+            grid[5] = answers6;
+            grid[6] = answers7;
+            grid[7] = answers8;
+            grid[8] = answers9;
+            grid[9] = answers10;
+
+           
+
+            btnPrevious.IsEnabled = true;
+
+          
+
 
             grid[counter].Visibility = Visibility.Hidden;
 
-           
             counter++;
 
             /*  RadioButton[] radio = new RadioButton[4];
@@ -218,8 +260,13 @@ namespace TestSystem
 
                 }
 
-            //    nextCallFunc = true;
-                
+            if (counter == QuestionData.testQuestions.Count - 1)
+            {
+                // MessageBox.Show("Няма следващ въпрос");
+            //    counter--;
+                btnNext.IsEnabled = false;
+            }
+
 
         }
 
@@ -227,29 +274,37 @@ namespace TestSystem
 
         private void btnPrevious_Click(object sender, RoutedEventArgs e)
         {
-           
-            if (counter == 0)
-            {
-                MessageBox.Show("Няма предишен въпрос");
-                counter++;
-            }
+            btnNext.IsEnabled = true;
 
-            Grid[] grid = new Grid[4];
+         
+
+            Grid[] grid = new Grid[10];
             grid[0] = answers1;
             grid[1] = answers2;
             grid[2] = answers3;
             grid[3] = answers4;
+            grid[4] = answers5;
+            grid[5] = answers6;
+            grid[6] = answers7;
+            grid[7] = answers8;
+            grid[8] = answers9;
+            grid[9] = answers10;
+
+
+
+        
 
             grid[counter].Visibility = Visibility.Hidden;
 
             counter--;
-         /*   RadioButton[] radio = new RadioButton[40];
 
-            radio[0] = radioBtnOpt1;
-            radio[1] = radioBtnOpt2;
-            radio[2] = radioBtnOpt3;
-            radio[3] = radioBtnOpt4;
-            */
+            /*   RadioButton[] radio = new RadioButton[40];
+
+               radio[0] = radioBtnOpt1;
+               radio[1] = radioBtnOpt2;
+               radio[2] = radioBtnOpt3;
+               radio[3] = radioBtnOpt4;
+               */
 
 
             lblQuestion.Content = "Въпрос " + QuestionData.testQuestions[counter].numOfQuestion;
@@ -286,7 +341,12 @@ namespace TestSystem
 
             }
 
-      //      previousCallFucn = true;
+            if (counter == 0)
+            {
+                //  MessageBox.Show("Няма предишен въпрос");
+              //  counter++;
+                btnPrevious.IsEnabled = false;
+            }
 
 
         }
@@ -294,11 +354,17 @@ namespace TestSystem
     
         private void btnFinish_Click(object sender, RoutedEventArgs e)
         {
-            Grid[] grid = new Grid[4];
+            Grid[] grid = new Grid[10];
             grid[0] = answers1;
             grid[1] = answers2;
             grid[2] = answers3;
             grid[3] = answers4;
+            grid[4] = answers5;
+            grid[5] = answers6;
+            grid[6] = answers7;
+            grid[7] = answers8;
+            grid[8] = answers9;
+            grid[9] = answers10;
 
             for (int i = 0; i < grid.Length; i++)
             {
@@ -314,7 +380,28 @@ namespace TestSystem
 
             timer.Stop();
 
-            MessageBox.Show("Grats ! You've got" + " " + correctAnswersCounter + "/" + QuestionData.testQuestions.Count + " right");
+            MessageBox.Show("Поздравления! Вие имате" + " " + correctAnswersCounter + "/" + QuestionData.testQuestions.Count + " верни");
+            if (correctAnswersCounter < 6)
+            {
+                MessageBox.Show("Вашата оценка е Слаб(2)");
+            }
+
+            else if (correctAnswersCounter == 6)
+            {
+                MessageBox.Show("Вашата оценка е Среден(3)");
+            }
+            else if (correctAnswersCounter == 7)
+            {
+                MessageBox.Show("Вашата оценка е Добър(4)");
+            }
+            else if (correctAnswersCounter == 8)
+            {
+                MessageBox.Show("Вашата оценка е Много добър(5)");
+            }
+            else
+            {
+                MessageBox.Show("Вашата оценка е Отличен(6)");
+            }
         }
 
 
