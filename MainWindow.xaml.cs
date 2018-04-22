@@ -401,7 +401,7 @@ namespace TestSystem
                 MessageBox.Show("Вашата оценка е Отличен(6)");
             }
 
-            btnCheck_Checked(new object, new RoutedEventArgs);
+           
 
         }
 
