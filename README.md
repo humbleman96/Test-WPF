@@ -1,4 +1,4 @@
-# Maths test on WPF (XAML), using .NET 5, which supports:
+# Implementation of a maths quiz by using .NET 5, WFP (XAML), which supports:
 1. 10 questions
 2. shuffled positions of the given answers for different executions of the test
 3. an added timer
